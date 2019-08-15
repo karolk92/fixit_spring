@@ -1,0 +1,16 @@
+
+spring:
+    datasource:
+        url: jdbc:postgresql://localhost:5432/fixit
+        password: postgres
+        username: postgres
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+        generate-ddl: true
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                temp:
+                    use_jdbc_metadata_defaults: false
+
