@@ -1,6 +1,8 @@
 package com.sellions.fixit.category.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sellions.fixit.device.entity.Device;
 import lombok.*;
 
@@ -11,7 +13,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "devices")
 @Entity
 public class Category {
 

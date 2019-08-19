@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "parameters")
 @Entity
 public class ParameterName {
 

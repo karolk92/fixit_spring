@@ -29,7 +29,6 @@ public class DeviceService {
         Device result = deviceRepository.findById(device.getId()).get();
         result.setName(device.getName());
         result.setCategory(device.getCategory());
-        result.setDateOfProduction(device.getDateOfProduction());
         result.setCondition(device.getCondition());
         result.setComments(device.getComments());
         result.setParameters(device.getParameters());

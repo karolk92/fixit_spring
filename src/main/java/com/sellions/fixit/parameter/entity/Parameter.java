@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "device")
 @NoArgsConstructor
 @Entity
 public class Parameter {
@@ -23,12 +23,12 @@ public class Parameter {
     @Column(name = "create_timestamp")
     private LocalDateTime createTimestamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "name_id")
     private ParameterName name;
     private String value;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "device_id")
     @JsonIgnore
     private Device device;

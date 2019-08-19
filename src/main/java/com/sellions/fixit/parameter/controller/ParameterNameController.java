@@ -11,7 +11,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/parameter/names")
+@RequestMapping("/parameters/names")
 public class ParameterNameController {
 
     private ParameterNameService parameterNameService;

@@ -1,5 +1,7 @@
 package com.sellions.fixit.device.controller;
 
+import com.sellions.fixit.category.entity.Category;
+import com.sellions.fixit.category.service.CategoryService;
 import com.sellions.fixit.comment.entity.Comment;
 import com.sellions.fixit.comment.service.CommentService;
 import com.sellions.fixit.device.entity.Device;
@@ -15,12 +17,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/devices")
 public class DeviceController {
     private DeviceService deviceService;
     private CommentService commentService;
     private ParameterService parameterService;
+    private CategoryService categoryService;
 
     @GetMapping
     public ResponseEntity<List<Device>> getAllDevices() {
@@ -59,16 +63,16 @@ public class DeviceController {
 
     @GetMapping(value = "/{id}/comments")
     public ResponseEntity<List<Comment>> getAllCommentsByDeviceId(@PathVariable("id") Long deviceID) {
-        List<Comment> result = commentService.getAllCommentsByDeviceId(deviceID);
+        List<Comment> comments = commentService.getAllCommentsByDeviceId(deviceID);
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
     @GetMapping(value = "/{id}/parameters")
     public ResponseEntity<List<Parameter>> getAllParametersByDeviceId(@PathVariable("id") Long deviceID) {
-        List<Parameter> result = parameterService.getAllParametersByDeviceId(deviceID);
+        List<Parameter> parameters = parameterService.getAllParametersByDeviceId(deviceID);
 
-        return new ResponseEntity<>(result, HttpStatus.OK);
+        return new ResponseEntity<>(parameters, HttpStatus.OK);
     }
 
     @PostMapping(value = "/{id}/parameters")

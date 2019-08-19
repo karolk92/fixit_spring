@@ -1,6 +1,8 @@
 package com.sellions.fixit.device.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sellions.fixit.category.entity.Category;
 import com.sellions.fixit.comment.entity.Comment;
 import com.sellions.fixit.enums.Condition;
@@ -26,15 +28,10 @@ public class Device {
     private Long id;
     private String name;
 
-    @Column(name = "production_timestamp")
-    private LocalDateTime dateOfProduction;
-
     @Enumerated(EnumType.STRING)
-    @Column(name = "damage_status")
     private Condition condition;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
 
@@ -46,9 +43,8 @@ public class Device {
     @JsonIgnore
     private Set<Comment> comments = new HashSet<>();
 
-    public Device(String name, LocalDateTime dateOfProduction, Category category, Condition condition) {
+    public Device(String name, Category category, Condition condition) {
         this.name = name;
-        this.dateOfProduction = dateOfProduction;
         this.category = category;
         this.condition = condition;
     }
